@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import skyLogo from './Images/skyLogo.png';
 import './App.css';
 
 class App extends Component {
@@ -7,19 +7,33 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <div className="logo-container">
+            <img src={skyLogo} className="App-logo" alt="skyLogo" />
+          </div>
+          <div className="headers-container">
+            <div className="title-bar">
+              I am the title bar
+            </div>
+            <div className="nav-bar">
+              I am the nav bar
+            </div>
+          </div>
         </header>
+        <div className="inner-wrapper">
+          <main>
+            <h1>This will be the body of Moodslider</h1>
+          </main>
+        </div>
+        <footer className="App-footer">
+          <div className="logo-container">
+            <img src={skyLogo} className="App-logo" alt="skyLogo" />
+          </div>
+          <div className="quote-container">
+            <h6>
+              It’s our people that make Sky Europe’s leading entertainment company. That’s why we work hard to be an inclusive employer, so everyone at Sky can be their best.
+            </h6>
+          </div>
+        </footer>
       </div>
     );
   }
