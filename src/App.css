@@ -82,3 +82,12 @@
   height: 30px;
   margin: 10px;
 }
+
+.nav-bar {
+  display: flex;
+}
+
+.link {
+  flex: 1;
+  padding: 10px;
+}
