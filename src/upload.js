@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class upload extends React.Component {
 
@@ -7,6 +8,8 @@ class upload extends React.Component {
         this.state = {foo: 'No content uploaded yet'};
     }
 
+
+
     onChange(event) {
         let files = event.target.files;
         const reader = new FileReader();
@@ -14,21 +17,28 @@ class upload extends React.Component {
             let res = reader.result;
             var parser = new DOMParser(), xmlDoc = parser.parseFromString(res, "text/xml");
             console.log(xmlDoc)
-            this.setState({foo: 'Upload successful!'});
+            this.props.callbackFromParent(xmlDoc);
+            this.setState({foo: 'Upload successful! Please click the "Continue" button below'});
         }
-        reader.readAsText(files[0])
+        reader.readAsText(files[0]);
     }
 
     render() {
         return (
-            <form>
-                <label>
-                    Upload file:
-                    <input type="file" accept=".xml" name="file" onChange={(event) => this.onChange(event)}/>
-                </label>
-                <br />
-                <div>Upload status: {this.state.foo}</div>
-            </form>
+            <div>
+                <form>
+                    <label>
+                        Upload file:
+                        <input type="file" accept=".xml" name="file" onChange={(event) => this.onChange(event)}/>
+                    </label>
+                    <br />
+                    <div>Upload status: {this.state.foo}</div>
+                </form>
+                <Link to={"/home"} className="link">
+                    <button>Continue</button>
+                </Link>
+                <div>Hi {this.props.listNameFromParent}</div>
+            </div>
         )
     }
 }

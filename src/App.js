@@ -5,9 +5,33 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import home from './home';
 import upload from './upload';
 
+const routes = [
+  {
+    path: '/home',
+    component: home,
+  },
+  {
+    path: '/upload',
+    component: upload
+  }
+]
+
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      listDataFromChild: 'no content'
+    };
+  }
+
+  myCallback = (dataFromChild) => {
+    this.setState({listDataFromChild: String(dataFromChild.getElementsByTagName('imagepath')[0].firstChild.nodeValue)});
+  }
+
   render() {
+    var listName = 'foo';
+    var show = this.state.listDataFromChild;
     return (
       <div className="App">
         <Router>
@@ -21,7 +45,7 @@ class App extends Component {
                   Welcome to Moodslider!
                 </div>
                 <div className="nav-bar">
-                  <Link to={"/"} className="link">
+                  <Link to={"/home"} className="link">
                     <div className="moodslider-home-link">Moodslider home page</div>
                   </Link>
                   <Link to={"/upload"} className="link" >
@@ -30,8 +54,17 @@ class App extends Component {
                 </div>
               </div>
             </header>
-            <Route exact path='' component={home} />
-            <Route exact path='/upload' component={upload} />
+            
+          {routes.map(({path, component: C}) => (
+            <Route 
+              path = {path} 
+              render = {(props) => <C {...props} showFromParent={show} listNameFromParent={listName} callbackFromParent={this.myCallback}/>}
+            />
+          ))}
+            
+            {/* <Route exact path='/home' component={home}/>
+            <Route exact path='/upload' component={upload}/> */}
+
             <footer className="App-footer">
               <div className="logo-container">
                 <img src={skyLogo} className="App-logo" alt="skyLogo" />
