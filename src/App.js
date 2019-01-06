@@ -4,7 +4,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import home from './Components/home';
 import upload from './Components/upload';
-// import { getMovieData } from './Logic/getMovieData'
 
 const routes = [
   {
@@ -31,21 +30,40 @@ class App extends Component {
       img2: 'no content',
       img3: 'no content',
       img4: 'no content',
-      img5: 'no content'
+      img5: 'no content',
+      slider1Val: 50,
+      array: null
     };
   }
 
+  getSliderData = (sliderDataFromChild) => {
+    this.setState({slider1Val: sliderDataFromChild});
+    const placeholder = this.state.array;
+    if(this.state.slider1Val < 50) {
+      console.log('less than 50!')
+      let filtered = this.state.array.filter((show) => {
+        return show.getElementsByTagName('mood')[0].innerHTML === 'Wide Awake'
+    })
+      this.setState({array: filtered});
+  } else {
+    this.setState({array: placeholder})
+  }
+  console.log(this.state.array)
+  }
+  
   getMovieData = (dataFromChild) => {
-    let dataFromChild1 = dataFromChild[0].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild2 = dataFromChild[1].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild3 = dataFromChild[2].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild4 = dataFromChild[3].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild5 = dataFromChild[4].getElementsByTagName("name")[0].innerHTML
-    let image1 = dataFromChild[0].getElementsByTagName("imagepath")[0].innerHTML
-    let image2 = dataFromChild[1].getElementsByTagName("imagepath")[0].innerHTML
-    let image3 = dataFromChild[2].getElementsByTagName("imagepath")[0].innerHTML
-    let image4 = dataFromChild[3].getElementsByTagName("imagepath")[0].innerHTML
-    let image5 = dataFromChild[4].getElementsByTagName("imagepath")[0].innerHTML
+    this.setState({array: dataFromChild});
+
+    let dataFromChild1 = this.state.array[0].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild2 = this.state.array[1].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild3 = this.state.array[2].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild4 = this.state.array[3].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild5 = this.state.array[4].getElementsByTagName("name")[0].innerHTML
+    let image1 = this.state.array[0].getElementsByTagName("imagepath")[0].innerHTML
+    let image2 = this.state.array[1].getElementsByTagName("imagepath")[0].innerHTML
+    let image3 = this.state.array[2].getElementsByTagName("imagepath")[0].innerHTML
+    let image4 = this.state.array[3].getElementsByTagName("imagepath")[0].innerHTML
+    let image5 = this.state.array[4].getElementsByTagName("imagepath")[0].innerHTML
     this.setState({
       title1: dataFromChild1,
       title2: dataFromChild2,
@@ -98,7 +116,7 @@ class App extends Component {
           {routes.map(({path, component: C}) => (
             <Route 
               path = {path} 
-              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} listNameFromParent={listName} callbackFromParent={this.getMovieData}/>}
+              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} listNameFromParent={listName} callbackFromParent={this.getMovieData} sliderCallbackFromParent={this.getSliderData} onUpdate={() => this.getTracks()}/>}
             />
           ))}
             

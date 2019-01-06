@@ -8,8 +8,6 @@ class upload extends React.Component {
         this.state = {foo: 'No content uploaded yet'};
     }
 
-
-
     onChange(event) {
         let files = event.target.files;
         const reader = new FileReader();
