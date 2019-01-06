@@ -14,12 +14,31 @@
   vertical-align: top;
 }
 
+.title-bar {
+  padding: 20px;
+  color: #ff0066;
+}
+
+.link {
+  text-decoration: none;
+  background-color: rgb(99, 36, 138);
+  padding: 20px;
+  margin: 20px;
+  color: white;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
 .App-header {
   display: flex;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  background-color: magenta;
+  background-color: black;
 }
 
 .logo-container {
@@ -36,7 +55,7 @@
 }
 
 .App-footer {
-  background-color: cyan;
+  background-color: black;
   bottom: 0;
   position: absolute;
   width: 100%;
@@ -45,6 +64,7 @@
 
 .quote-container {
   flex: 8;
+  color: white;
 }
 
 .calm-container, .sad-container, .wide-awake-container, .fearless-container {
@@ -71,7 +91,7 @@
   border-width: 5px;
   padding: 10px;
   height: 120px;
-  margin: 10px;
+  margin: 30px;
 }
 
 .programme1-title, .programme2-title, .programme3-title, .programme4-title, .programme5-title {
@@ -80,7 +100,7 @@
   border-width: 5px;
   padding: 10px;
   height: 30px;
-  margin: 10px;
+  margin: 30px;
 }
 
 .nav-bar {
@@ -98,4 +118,37 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.inner-wrapper {
+  padding: 20px;
+}
+
+.value-indicator {
+  padding: 25px;
+}
+
+.continue-button {
+  text-decoration: none;
+  background-color: rgb(99, 36, 138);
+  padding: 20px;
+  margin: 20px;
+  color: white;
+  opacity: 0.7;
+  border-radius: 10px;
+  width: 100px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.continue-button:hover {
+  opacity: 1;
+}
+
+.upload-status {
+  padding: 20px;
 }

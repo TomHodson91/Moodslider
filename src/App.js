@@ -79,7 +79,6 @@ class App extends Component {
   }
 
   render() {
-    var listName = 'foo';
     var movieTitle1 = this.state.title1;
     var movieTitle2 = this.state.title2;
     var movieTitle3 = this.state.title3;
@@ -100,11 +99,11 @@ class App extends Component {
               </div>
               <div className="headers-container">
                 <div className="title-bar">
-                  Welcome to Moodslider!
+                  Moodslider
                 </div>
                 <div className="nav-bar">
                   <Link to={"/home"} className="link">
-                    <div className="moodslider-home-link">Moodslider home page</div>
+                    <div className="moodslider-home-link">Moodslider Home</div>
                   </Link>
                   <Link to={"/upload"} className="link" >
                     <div className="upload-link">Upload Content</div>
@@ -116,7 +115,7 @@ class App extends Component {
           {routes.map(({path, component: C}) => (
             <Route 
               path = {path} 
-              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} listNameFromParent={listName} callbackFromParent={this.getMovieData} sliderCallbackFromParent={this.getSliderData} onUpdate={() => this.getTracks()}/>}
+              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} callbackFromParent={this.getMovieData} sliderCallbackFromParent={this.getSliderData} onUpdate={() => this.getTracks()}/>}
             />
           ))}
             

@@ -34,25 +34,25 @@ class home extends React.Component {
             <div className="calm-container">
               <h1 className="emotion">Agitated</h1>
               <input type="range" min="1" max="100" value={this.state.val} onChange={this.updateVal.bind(this)} className="slider" id="myRange" />
-              <div>Value: {this.state.val}</div>
+              <div className="value-indicator">Value: {this.state.val}</div>
               <h1 className="emotion">Calm</h1>
             </div>
             <div className="sad-container">
               <h1 className="emotion">Happy</h1>
               <input type="range" min="1" max="100" value={this.state.val2} onChange={this.updateVal2.bind(this)} className="slider" id="myRange" />
-              <div>Value: {this.state.val2}</div>
+              <div className="value-indicator">Value: {this.state.val2}</div>
               <h1 className="emotion">Sad</h1>
             </div>
             <div className="wide-awake-container">
               <h1 className="emotion">Tired</h1>
               <input type="range" min="1" max="100" value={this.state.val3} onChange={this.updateVal3.bind(this)} className="slider" id="myRange" />
-              <div>Value: {this.state.val3}</div>
+              <div className="value-indicator">Value: {this.state.val3}</div>
               <h1 className="emotion">Wide Awake</h1>
             </div>
             <div className="fearless-container">
               <h1 className="emotion">Scared</h1>
               <input type="range" min="1" max="100" value={this.state.val4} onChange={this.updateVal4.bind(this)} className="slider" id="myRange" />
-              <div>Value: {this.state.val4}</div>
+              <div className="value-indicator">Value: {this.state.val4}</div>
               <h1 className="emotion">Fearless</h1>
             </div>
           </div>
