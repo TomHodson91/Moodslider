@@ -8,16 +8,15 @@ import upload from './Components/upload';
 const routes = [
   {
     path: '/home',
-    component: home,
+    component: home
   },
   {
     path: '/upload',
     component: upload
   }
-]
+];
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,36 +33,35 @@ class App extends Component {
       slider1Val: 50,
       array: null
     };
-  }
+  };
 
   getSliderData = (sliderDataFromChild) => {
     this.setState({slider1Val: sliderDataFromChild});
     const placeholder = this.state.array;
     if(this.state.slider1Val < 50) {
-      console.log('less than 50!')
+      console.log('less than 50, filtering!')
       let filtered = this.state.array.filter((show) => {
-        return show.getElementsByTagName('mood')[0].innerHTML === 'Wide Awake'
+        return show.getElementsByTagName('mood')[0].innerHTML === 'Wide Awake';
     })
       this.setState({array: filtered});
   } else {
-    this.setState({array: placeholder})
+    this.setState({array: placeholder});
   }
-  console.log(this.state.array)
-  }
+  };
   
   getMovieData = (dataFromChild) => {
     this.setState({array: dataFromChild});
 
-    let dataFromChild1 = this.state.array[0].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild2 = this.state.array[1].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild3 = this.state.array[2].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild4 = this.state.array[3].getElementsByTagName("name")[0].innerHTML
-    let dataFromChild5 = this.state.array[4].getElementsByTagName("name")[0].innerHTML
-    let image1 = this.state.array[0].getElementsByTagName("imagepath")[0].innerHTML
-    let image2 = this.state.array[1].getElementsByTagName("imagepath")[0].innerHTML
-    let image3 = this.state.array[2].getElementsByTagName("imagepath")[0].innerHTML
-    let image4 = this.state.array[3].getElementsByTagName("imagepath")[0].innerHTML
-    let image5 = this.state.array[4].getElementsByTagName("imagepath")[0].innerHTML
+    let dataFromChild1 = this.state.array[0].getElementsByTagName("name")[0].innerHTML;
+    let dataFromChild2 = this.state.array[1].getElementsByTagName("name")[0].innerHTML;
+    let dataFromChild3 = this.state.array[2].getElementsByTagName("name")[0].innerHTML;
+    let dataFromChild4 = this.state.array[3].getElementsByTagName("name")[0].innerHTML;
+    let dataFromChild5 = this.state.array[4].getElementsByTagName("name")[0].innerHTML;
+    let image1 = this.state.array[0].getElementsByTagName("imagepath")[0].innerHTML;
+    let image2 = this.state.array[1].getElementsByTagName("imagepath")[0].innerHTML;
+    let image3 = this.state.array[2].getElementsByTagName("imagepath")[0].innerHTML;
+    let image4 = this.state.array[3].getElementsByTagName("imagepath")[0].innerHTML;
+    let image5 = this.state.array[4].getElementsByTagName("imagepath")[0].innerHTML;
     this.setState({
       title1: dataFromChild1,
       title2: dataFromChild2,
@@ -76,7 +74,7 @@ class App extends Component {
       img4: image4,
       img5: image5,
     });
-  }
+  };
 
   render() {
     var movieTitle1 = this.state.title1;
@@ -115,7 +113,7 @@ class App extends Component {
           {routes.map(({path, component: C}) => (
             <Route 
               path = {path} 
-              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} callbackFromParent={this.getMovieData} sliderCallbackFromParent={this.getSliderData} onUpdate={() => this.getTracks()}/>}
+              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} callbackFromParent={this.getMovieData} sliderCallbackFromParent={this.getSliderData} />}
             />
           ))}
             
@@ -133,7 +131,7 @@ class App extends Component {
         </Router>
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;

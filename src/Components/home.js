@@ -8,23 +8,22 @@ class home extends React.Component {
       val2: 50,
       val3: 50,
       val4: 50
-    }
+    };
   };
 
   updateVal(event) {
     this.setState({ val: event.target.value });
     this.props.sliderCallbackFromParent(this.state.val);
-    // this.props.onUpdate(this.state.val);
-  }
+  };
   updateVal2(event) {
     this.setState({ val2: event.target.value });
-  }
+  };
   updateVal3(event) {
     this.setState({ val3: event.target.value });
-  }
+  };
   updateVal4(event) {
     this.setState({ val4: event.target.value });
-  }
+  };
 
   render() {
     return (
@@ -81,7 +80,7 @@ class home extends React.Component {
         </main>
       </div>
     )
-  }
-}
+  };
+};
 
 export default home;

@@ -6,7 +6,7 @@ class upload extends React.Component {
     constructor() {
         super();
         this.state = {status: 'No content uploaded yet'};
-    }
+    };
 
     onChange(event) {
         let files = event.target.files;
@@ -14,13 +14,13 @@ class upload extends React.Component {
         reader.onload = () => {
             let res = reader.result;
             var parser = new DOMParser(), xmlDoc = parser.parseFromString(res, "text/xml");
-            var arr = Array.from(xmlDoc.getElementsByTagName("programme"))
-            console.log(arr)
+            var arr = Array.from(xmlDoc.getElementsByTagName("programme"));
+            console.log(arr);
             this.props.callbackFromParent(arr);
             this.setState({status: 'Upload successful! Please click the "Continue" button below'});
-        }
+        };
         reader.readAsText(files[0]);
-    }
+    };
 
     render() {
         return (
@@ -35,11 +35,10 @@ class upload extends React.Component {
                 </form>
                 <Link to={"/home"}>
                     <div className="continue-button">Continue</div>
-                    {/* <button className="continue-button">Continue</button> */}
                 </Link>
             </div>
         )
-    }
-}
+    };
+};
 
 export default upload;
