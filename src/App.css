@@ -91,3 +91,11 @@
   flex: 1;
   padding: 10px;
 }
+
+.image {
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

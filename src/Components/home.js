@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class home extends React.Component {
   constructor() {
     super();
@@ -23,6 +24,8 @@ class home extends React.Component {
   updateVal4(event) {
     this.setState({ val4: event.target.value });
   }
+
+  
   render() {
     return (
       <div className="inner-wrapper">
@@ -51,24 +54,24 @@ class home extends React.Component {
           </div>
           <div className="programmes-container">
             <div className="programme1-container">
-              <div className="programme1">{this.props.showFromParent}</div>
-              <div className="programme1-title">No Content</div>
+              <div className="programme1"><img className='image' src={require(`../Images/${this.props.movieImage1}.jpg`)} alt={this.props.movieImage1} /></div>
+              <div className="programme1-title">{this.props.movieTitle1}</div>
             </div>
             <div className="programme2-container">
-              <div className="programme2">No Content</div>
-              <div className="programme1-title">No Content</div>
+              <div className="programme2"><img className='image' src={require(`../Images/${this.props.movieImage2}.jpg`)} alt={this.props.movieImage2} /></div>
+              <div className="programme2-title">{this.props.movieTitle2}</div>
             </div>
             <div className="programme3-container">
-              <div className="programme3">No Content</div>
-              <div className="programme1-title">No Content</div>
+              <div className="programme3"><img className='image' src={require(`../Images/${this.props.movieImage3}.jpg`)} alt={this.props.movieImage3} /></div>
+              <div className="programme3-title">{this.props.movieTitle3}</div>
             </div>
             <div className="programme4-container">
-              <div className="programme4">No Content</div>
-              <div className="programme1-title">No Content</div>
+              <div className="programme4"><img className='image' src={require(`../Images/${this.props.movieImage4}.jpg`)} alt={this.props.movieImage4} /></div>
+              <div className="programme4-title">{this.props.movieTitle4}</div>
             </div>
             <div className="programme5-container">
-              <div className="programme5">No Content</div>
-              <div className="programme1-title">No Content</div>
+              <div className="programme5"><img className='image' src={require(`../Images/${this.props.movieImage5}.jpg`)} alt={this.props.movieImage5} /></div>
+              <div className="programme5-title">{this.props.movieTitle5}</div>
             </div>
           </div>
         </main>

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import skyLogo from './Images/skyLogo.png';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import home from './home';
-import upload from './upload';
+import home from './Components/home';
+import upload from './Components/upload';
+// import { getMovieData } from './Logic/getMovieData'
 
 const routes = [
   {
@@ -21,17 +22,56 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listDataFromChild: 'no content'
+      title1: 'no content',
+      title2: 'no content',
+      title3: 'no content',
+      title4: 'no content',
+      title5: 'no content',
+      img1: 'no content',
+      img2: 'no content',
+      img3: 'no content',
+      img4: 'no content',
+      img5: 'no content'
     };
   }
 
-  myCallback = (dataFromChild) => {
-    this.setState({listDataFromChild: String(dataFromChild.getElementsByTagName('imagepath')[0].firstChild.nodeValue)});
+  getMovieData = (dataFromChild) => {
+    let dataFromChild1 = dataFromChild[0].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild2 = dataFromChild[1].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild3 = dataFromChild[2].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild4 = dataFromChild[3].getElementsByTagName("name")[0].innerHTML
+    let dataFromChild5 = dataFromChild[4].getElementsByTagName("name")[0].innerHTML
+    let image1 = dataFromChild[0].getElementsByTagName("imagepath")[0].innerHTML
+    let image2 = dataFromChild[1].getElementsByTagName("imagepath")[0].innerHTML
+    let image3 = dataFromChild[2].getElementsByTagName("imagepath")[0].innerHTML
+    let image4 = dataFromChild[3].getElementsByTagName("imagepath")[0].innerHTML
+    let image5 = dataFromChild[4].getElementsByTagName("imagepath")[0].innerHTML
+    this.setState({
+      title1: dataFromChild1,
+      title2: dataFromChild2,
+      title3: dataFromChild3,
+      title4: dataFromChild4,
+      title5: dataFromChild5,
+      img1: image1,
+      img2: image2,
+      img3: image3,
+      img4: image4,
+      img5: image5,
+    });
   }
 
   render() {
     var listName = 'foo';
-    var show = this.state.listDataFromChild;
+    var movieTitle1 = this.state.title1;
+    var movieTitle2 = this.state.title2;
+    var movieTitle3 = this.state.title3;
+    var movieTitle4 = this.state.title4;
+    var movieTitle5 = this.state.title5;
+    var movieImage1 = this.state.img1;
+    var movieImage2 = this.state.img2;
+    var movieImage3 = this.state.img3;
+    var movieImage4 = this.state.img4;
+    var movieImage5 = this.state.img5;
     return (
       <div className="App">
         <Router>
@@ -58,13 +98,10 @@ class App extends Component {
           {routes.map(({path, component: C}) => (
             <Route 
               path = {path} 
-              render = {(props) => <C {...props} showFromParent={show} listNameFromParent={listName} callbackFromParent={this.myCallback}/>}
+              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} listNameFromParent={listName} callbackFromParent={this.getMovieData}/>}
             />
           ))}
             
-            {/* <Route exact path='/home' component={home}/>
-            <Route exact path='/upload' component={upload}/> */}
-
             <footer className="App-footer">
               <div className="logo-container">
                 <img src={skyLogo} className="App-logo" alt="skyLogo" />
@@ -78,7 +115,6 @@ class App extends Component {
           </div>
         </Router>
       </div>
-
     );
   }
 }

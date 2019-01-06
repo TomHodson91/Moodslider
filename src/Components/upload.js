@@ -16,8 +16,9 @@ class upload extends React.Component {
         reader.onload = () => {
             let res = reader.result;
             var parser = new DOMParser(), xmlDoc = parser.parseFromString(res, "text/xml");
-            console.log(xmlDoc)
-            this.props.callbackFromParent(xmlDoc);
+            var arr = Array.from(xmlDoc.getElementsByTagName("programme"))
+            console.log(arr)
+            this.props.callbackFromParent(arr);
             this.setState({foo: 'Upload successful! Please click the "Continue" button below'});
         }
         reader.readAsText(files[0]);
