@@ -24,7 +24,7 @@ class upload extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="upload-container">
                 <form>
                     <label className="upload-status">
                         Upload file:

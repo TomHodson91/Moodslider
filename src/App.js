@@ -36,43 +36,103 @@ class App extends Component {
   };
 
   getSliderData = (sliderDataFromChild) => {
-    this.setState({slider1Val: sliderDataFromChild});
-    const placeholder = this.state.array;
-    if(this.state.slider1Val < 50) {
-      console.log('less than 50, filtering!')
-      let filtered = this.state.array.filter((show) => {
-        return show.getElementsByTagName('mood')[0].innerHTML === 'Wide Awake';
-    })
-      this.setState({array: filtered});
-  } else {
-    this.setState({array: placeholder});
-  }
-  };
-  
-  getMovieData = (dataFromChild) => {
-    this.setState({array: dataFromChild});
+    this.setState({ slider1Val: sliderDataFromChild });
+    if (this.state.slider1Val < 50) {
+      //counts across the image boxes
+      var ProgCounter = 0;
 
-    let dataFromChild1 = this.state.array[0].getElementsByTagName("name")[0].innerHTML;
-    let dataFromChild2 = this.state.array[1].getElementsByTagName("name")[0].innerHTML;
-    let dataFromChild3 = this.state.array[2].getElementsByTagName("name")[0].innerHTML;
-    let dataFromChild4 = this.state.array[3].getElementsByTagName("name")[0].innerHTML;
-    let dataFromChild5 = this.state.array[4].getElementsByTagName("name")[0].innerHTML;
-    let image1 = this.state.array[0].getElementsByTagName("imagepath")[0].innerHTML;
-    let image2 = this.state.array[1].getElementsByTagName("imagepath")[0].innerHTML;
-    let image3 = this.state.array[2].getElementsByTagName("imagepath")[0].innerHTML;
-    let image4 = this.state.array[3].getElementsByTagName("imagepath")[0].innerHTML;
-    let image5 = this.state.array[4].getElementsByTagName("imagepath")[0].innerHTML;
+      for (var i = 0; i < this.state.array.length; i++) {
+        if (this.state.myMoods[i] === "Agitated") {
+          ProgCounter++;
+          if (ProgCounter === 1) {
+            this.setState({
+              title1: this.state.myProgNames[i],
+              img1: this.state.myImagePaths[i]
+            })
+          }
+          if (ProgCounter === 2) {
+            this.setState({
+              title2: this.state.myProgNames[i],
+              img2: this.state.myImagePaths[i]
+            })
+          }
+          if (ProgCounter === 3) {
+            this.setState({
+              title3: this.state.myProgNames[i],
+              img3: this.state.myImagePaths[i]
+            })
+          }
+          if (ProgCounter === 4) {
+            this.setState({
+              title4: this.state.myProgNames[i],
+              img4: this.state.myImagePaths[i]
+            })
+          }
+          if (ProgCounter === 5) {
+            this.setState({
+              title5: this.state.myProgNames[i],
+              img5: this.state.myImagePaths[i]
+            })
+          }
+        }
+      }
+    } else {
+      ProgCounter = 0;
+      for (var j = 0; j < this.state.array.length; j++) {
+        if (this.state.myMoods[j] === "Calm") {
+          ProgCounter++;
+          if (ProgCounter === 1) {
+            this.setState({
+              title1: this.state.myProgNames[j],
+              img1: this.state.myImagePaths[j]
+            })
+          }
+          if (ProgCounter === 2) {
+            this.setState({
+              title2: this.state.myProgNames[j],
+              img2: this.state.myImagePaths[j]
+            })
+          }
+          if (ProgCounter === 3) {
+            this.setState({
+              title3: this.state.myProgNames[j],
+              img3: this.state.myImagePaths[j]
+            })
+          }
+          if (ProgCounter === 4) {
+            this.setState({
+              title4: this.state.myProgNames[j],
+              img4: this.state.myImagePaths[j]
+            })
+          }
+          if (ProgCounter === 5) {
+            this.setState({
+              title5: this.state.myProgNames[j],
+              img5: this.state.myImagePaths[j]
+            })
+          }
+        }
+      }
+    }
+  };
+
+  getMovieData = (dataFromChild) => {
+    this.setState({ array: dataFromChild });
+
+    var ProgNames = [];
+    var ImagePaths = [];
+    var Moods = [];
+
+    for (var i = 0; i < this.state.array.length; i++) {
+      ProgNames[i] = this.state.array[i].getElementsByTagName("name")[0].innerHTML;
+      ImagePaths[i] = this.state.array[i].getElementsByTagName("imagepath")[0].innerHTML;
+      Moods[i] = this.state.array[i].getElementsByTagName("mood")[0].innerHTML;
+    }
+
     this.setState({
-      title1: dataFromChild1,
-      title2: dataFromChild2,
-      title3: dataFromChild3,
-      title4: dataFromChild4,
-      title5: dataFromChild5,
-      img1: image1,
-      img2: image2,
-      img3: image3,
-      img4: image4,
-      img5: image5,
+      myProgNames: ProgNames,
+      myImagePaths: ImagePaths,
+      myMoods: Moods
     });
   };
 
@@ -109,14 +169,14 @@ class App extends Component {
                 </div>
               </div>
             </header>
-            
-          {routes.map(({path, component: C}) => (
-            <Route 
-              path = {path} 
-              render = {(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} callbackFromParent={this.getMovieData} sliderCallbackFromParent={this.getSliderData} />}
-            />
-          ))}
-            
+
+            {routes.map(({ path, component: C }) => (
+              <Route
+                path={path}
+                render={(props) => <C {...props} movieTitle1={movieTitle1} movieTitle2={movieTitle2} movieTitle3={movieTitle3} movieTitle4={movieTitle4} movieTitle5={movieTitle5} movieImage1={movieImage1} movieImage2={movieImage2} movieImage3={movieImage3} movieImage4={movieImage4} movieImage5={movieImage5} callbackFromParent={this.getMovieData} sliderCallbackFromParent={this.getSliderData} />}
+              />
+            ))}
+
             <footer className="App-footer">
               <div className="logo-container">
                 <img src={skyLogo} className="App-logo" alt="skyLogo" />
